@@ -40,8 +40,8 @@
                     <form id="formAuthentication" class="mb-3" action="{{ route('login.submit') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="email" class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="usuario@clubpolanco.com" autofocus required />
+                            <label for="email" class="form-label">Usuario o Correo Electrónico</label>
+                            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="admin o admin@clubpolanco.com" autofocus required />
                         </div>
                         <div class="mb-3 form-password-toggle">
                             <label class="form-label" for="password">Contraseña</label>

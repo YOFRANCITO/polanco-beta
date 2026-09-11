@@ -24,26 +24,35 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        $input = trim($request->input('email', ''));
+        if (strtolower($input) === 'admin') {
+            $request->merge(['email' => 'admin@clubpolanco.com']);
+        } elseif (strtolower($input) === 'operador') {
+            $request->merge(['email' => 'operador@clubpolanco.com']);
+        }
+
         $credentials = $request->validate([
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required',
         ], [
-            'email.required' => 'El correo electrónico es requerido.',
-            'email.email' => 'Ingrese un correo electrónico válido.',
+            'email.required' => 'El usuario o correo electrónico es requerido.',
             'password.required' => 'La contraseña es requerida.',
         ]);
 
         $remember = $request->has('remember');
 
-        if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password'], 'estado' => 'activo'], $remember)) {
+        // Buscar por correo o nombre de usuario
+        $user = \App\Models\User::where('email', $credentials['email'])
+            ->orWhere('name', $credentials['email'])
+            ->first();
+
+        if ($user && \Illuminate\Support\Facades\Hash::check($credentials['password'], $user->password)) {
+            if ($user->estado !== 'activo') {
+                return back()->withErrors(['email' => 'Su cuenta se encuentra inactiva. Contacte al administrador.'])->withInput();
+            }
+            Auth::login($user, $remember);
             $request->session()->regenerate();
             return redirect()->intended(route('dashboard-analytics'))->with('success', '¡Bienvenido(a) a Club Polanco!');
-        }
-
-        // Check if user exists but is inactive
-        $inactive = \App\Models\User::where('email', $credentials['email'])->where('estado', 'inactivo')->first();
-        if ($inactive) {
-            return back()->withErrors(['email' => 'Su cuenta se encuentra inactiva. Contacte al administrador.'])->withInput();
         }
 
         return back()->withErrors([
