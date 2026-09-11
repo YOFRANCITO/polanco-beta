@@ -24,4 +24,9 @@ if (isset($_ENV['VERCEL']) || env('VERCEL') || env('APP_ENV') === 'production' |
     $app->useStoragePath('/tmp/storage');
 }
 
+$app->singleton(
+    \Illuminate\Contracts\Foundation\MaintenanceMode::class,
+    \Illuminate\Foundation\FileBasedMaintenanceMode::class
+);
+
 return $app;

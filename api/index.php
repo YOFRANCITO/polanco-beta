@@ -41,5 +41,9 @@ if (!file_exists($targetDb)) {
     }
 }
 
+putenv('APP_MAINTENANCE_DRIVER=file');
+$_ENV['APP_MAINTENANCE_DRIVER'] = 'file';
+$_SERVER['APP_MAINTENANCE_DRIVER'] = 'file';
+
 // Delegar al index.php público estándar de Laravel
 require __DIR__ . '/../public/index.php';
