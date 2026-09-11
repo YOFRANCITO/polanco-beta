@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node -e \"const fs=require('fs'); if(!fs.existsSync('dist')) fs.cpSync('public', 'dist', {recursive: true});\""
+    "build": "vite build && node scripts/copy-dist.mjs",
+    "vercel-build": "vite build && node scripts/copy-dist.mjs"
   },
   "devDependencies": {
     "@babel/core": "7.26.10",
