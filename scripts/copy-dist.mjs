@@ -9,10 +9,6 @@ const dest = join(root, 'dist');
 
 console.log('📦 Copying public/ → dist/ for Vercel...');
 
-if (existsSync(dest)) {
-  console.log('⚠️  dist/ already exists, skipping copy.');
-} else {
-  mkdirSync(dest, { recursive: true });
-  cpSync(src, dest, { recursive: true });
-  console.log('✅ dist/ created successfully from public/');
-}
+mkdirSync(dest, { recursive: true });
+cpSync(src, dest, { recursive: true, force: true });
+console.log('✅ dist/ copied successfully from public/');
