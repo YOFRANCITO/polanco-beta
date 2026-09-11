@@ -10,9 +10,6 @@
   },
   "routes": [
     {
-      "handle": "filesystem"
-    },
-    {
       "src": "/assets/(.*)",
       "dest": "/assets/$1"
     },
@@ -25,6 +22,10 @@
       "dest": "/favicon.ico"
     },
     {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
@@ -35,6 +36,8 @@
     "APP_DEBUG": "true",
     "APP_KEY": "base64:+wzgZpWGbQxS/Wu7ms7qWibqCjsurduE5DGFw66I+3U=",
     "VIEW_COMPILED_PATH": "/tmp/storage/framework/views",
+    "APP_SERVICES_CACHE": "/tmp/services.php",
+    "APP_PACKAGES_CACHE": "/tmp/packages.php",
     "DB_CONNECTION": "sqlite",
     "DB_DATABASE": "/tmp/database.sqlite",
     "CACHE_STORE": "array",
