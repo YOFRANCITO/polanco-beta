@@ -20,7 +20,7 @@ return [
     */
 
     'bcrypt' => [
-        'rounds' => (int) env('BCRYPT_ROUNDS', 10),
+        'rounds' => ((int) env('BCRYPT_ROUNDS') >= 4 && (int) env('BCRYPT_ROUNDS') <= 31) ? (int) env('BCRYPT_ROUNDS') : 10,
         'verify' => env('HASH_VERIFY', true),
     ],
 
