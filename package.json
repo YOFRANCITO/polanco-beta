@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build && node -e \"const fs=require('fs'); if(!fs.existsSync('dist')) fs.cpSync('public', 'dist', {recursive: true});\""
   },
   "devDependencies": {
     "@babel/core": "7.26.10",
