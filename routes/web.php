@@ -65,6 +65,23 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/debug-hash', function () {
+    $info = [
+        'php_version' => PHP_VERSION,
+        'hashing_config' => config('hashing'),
+    ];
+    try {
+        $info['native_cost_10'] = password_hash('admin123', PASSWORD_BCRYPT, ['cost' => 10]);
+    } catch (\Throwable $e) {
+        $info['native_cost_10_err'] = get_class($e) . ': ' . $e->getMessage();
+    }
+    try {
+        $info['laravel_hash'] = \Illuminate\Support\Facades\Hash::make('admin123');
+    } catch (\Throwable $e) {
+        $info['laravel_hash_err'] = get_class($e) . ': ' . $e->getMessage();
+    }
+    return response()->json($info);
+});
 
 /*
 |--------------------------------------------------------------------------
