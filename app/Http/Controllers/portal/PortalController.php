@@ -19,8 +19,8 @@ class PortalController extends Controller
             return redirect()->route('portal.inicio');
         }
 
-        // Fetch 2 sample socios for quick test in development
-        $demoSocios = Socio::whereIn('estado', ['activo', 'moroso'])->limit(3)->get();
+        // Fetch sample socios for quick test in development
+        $demoSocios = Socio::whereIn('estado', ['activo', 'moroso'])->orderBy('id', 'asc')->limit(5)->get();
 
         return view('portal.login', compact('demoSocios'));
     }
@@ -32,23 +32,35 @@ class PortalController extends Controller
     {
         $request->validate([
             'codigo_acceso' => 'required|string',
-            'fecha_nacimiento' => 'required|date',
+            'fecha_nacimiento' => 'required',
         ], [
             'codigo_acceso.required' => 'El código de acceso es obligatorio.',
             'fecha_nacimiento.required' => 'La fecha de nacimiento es obligatoria.',
-            'fecha_nacimiento.date' => 'Formato de fecha inválido.',
         ]);
 
-        $codigo = strtoupper(trim($request->codigo_acceso));
-        $fecha = $request->fecha_nacimiento;
+        $rawCodigo = trim($request->codigo_acceso);
+        $codigo = strtoupper($rawCodigo);
+        
+        try {
+            $fecha = Carbon::parse($request->fecha_nacimiento)->format('Y-m-d');
+        } catch (\Throwable $e) {
+            $fecha = substr($request->fecha_nacimiento, 0, 10);
+        }
 
-        $socio = Socio::where('codigo_acceso', $codigo)
-            ->whereDate('fecha_nacimiento', $fecha)
+        $socio = Socio::where(function ($q) use ($codigo, $rawCodigo) {
+                $q->where('codigo_acceso', $codigo)
+                  ->orWhere('codigo_acceso', 'CP-' . $codigo)
+                  ->orWhere('cedula', $rawCodigo);
+            })
+            ->where(function ($q) use ($fecha) {
+                $q->whereDate('fecha_nacimiento', $fecha)
+                  ->orWhere('fecha_nacimiento', 'like', "$fecha%");
+            })
             ->first();
 
         if (!$socio) {
             return back()->withErrors([
-                'codigo_acceso' => 'Código de acceso o fecha de nacimiento incorrectos. Si no recuerda su código, consulte en recepción de Club Polanco.',
+                'codigo_acceso' => 'Código de acceso o fecha de nacimiento incorrectos. Verifique sus datos o use los botones de acceso rápido.',
             ])->withInput();
         }
 

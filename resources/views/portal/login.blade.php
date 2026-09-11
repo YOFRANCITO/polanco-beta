@@ -95,7 +95,7 @@
                     <div class="d-flex flex-column gap-1">
                         @foreach($demoSocios as $ds)
                         <button type="button" class="btn btn-xs btn-outline-secondary text-start py-1 px-2 d-flex justify-content-between align-items-center" 
-                                onclick="fillSocio('{{ $ds->codigo_acceso }}', '{{ $ds->fecha_nacimiento }}')">
+                                onclick="fillSocio('{{ $ds->codigo_acceso }}', '{{ is_object($ds->fecha_nacimiento) ? $ds->fecha_nacimiento->format('Y-m-d') : substr($ds->fecha_nacimiento, 0, 10) }}')">
                             <span><strong>{{ $ds->nombre_completo }}</strong> <small class="text-muted">({{ $ds->codigo_acceso }})</small></span>
                             <span class="badge {{ $ds->estado === 'activo' ? 'bg-label-success' : 'bg-label-warning' }}">{{ ucfirst($ds->estado) }}</span>
                         </button>
