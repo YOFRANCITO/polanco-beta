@@ -12,6 +12,14 @@ register_shutdown_function(function () {
     }
 });
 
+// Forzar reconocimiento de HTTPS detrás del proxy de Vercel
+$_SERVER['HTTPS'] = 'on';
+$_SERVER['SERVER_PORT'] = 443;
+$_SERVER['HTTP_X_FORWARDED_PROTO'] = 'https';
+$_SERVER['HTTP_X_FORWARDED_PORT'] = '443';
+$_ENV['VERCEL'] = '1';
+$_SERVER['VERCEL'] = '1';
+
 // Preparación de directorios temporales de almacenamiento en /tmp para entornos serverless (Vercel)
 $storageDirs = [
     '/tmp/storage',

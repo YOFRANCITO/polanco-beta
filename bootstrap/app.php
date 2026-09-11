@@ -11,6 +11,13 @@ $app = Application::configure(basePath: dirname(__DIR__))
     health: '/up',
   )
   ->withMiddleware(function (Middleware $middleware) {
+    $middleware->trustProxies(at: '*');
+    $middleware->validateCsrfTokens(except: [
+      'login',
+      'portal/login',
+      'logout',
+      'portal/logout',
+    ]);
     $middleware->alias([
       'role' => \App\Http\Middleware\RoleMiddleware::class,
       'socio.auth' => \App\Http\Middleware\SocioAuth::class,

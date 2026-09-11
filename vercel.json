@@ -34,6 +34,7 @@
     "APP_NAME": "Club Polanco",
     "APP_ENV": "production",
     "APP_DEBUG": "true",
+    "APP_URL": "https://polanco-beta.vercel.app",
     "APP_KEY": "base64:+wzgZpWGbQxS/Wu7ms7qWibqCjsurduE5DGFw66I+3U=",
     "VIEW_COMPILED_PATH": "/tmp/storage/framework/views",
     "APP_SERVICES_CACHE": "/tmp/services.php",
@@ -42,6 +43,7 @@
     "DB_DATABASE": "/tmp/database.sqlite",
     "CACHE_STORE": "array",
     "SESSION_DRIVER": "cookie",
+    "SESSION_SECURE_COOKIE": "true",
     "LOG_CHANNEL": "stderr"
   }
 }
