@@ -11,4 +11,11 @@ console.log('📦 Copying public/ → dist/ for Vercel...');
 
 mkdirSync(dest, { recursive: true });
 cpSync(src, dest, { recursive: true, force: true });
-console.log('✅ dist/ copied successfully from public/');
+
+// Remove index.php from dist/ so Vercel forwards requests to api/index.php instead of downloading index.php as static
+const distIndex = join(dest, 'index.php');
+if (existsSync(distIndex)) {
+  unlinkSync(distIndex);
+  console.log('🗑️ Removed dist/index.php (routed to api/index.php)');
+}
+console.log('✅ dist/ ready for Vercel static assets');
