@@ -1,0 +1,31 @@
+<?php
+// Variables
+return [
+  "creatorName" => "Club Polanco",
+  "creatorUrl" => "https://clubpolanco.com",
+  "templateName" => "Club Polanco",
+  "templateSuffix" => "Sistema de Gestión Club Polanco",
+  "templateVersion" => "1.0.0",
+  "templateFree" => true,
+  "templateDescription" => "Sistema administrativo para la gestión de socios, pagos y finanzas de Club Polanco.",
+  "templateKeyword" => "club polanco, gestión de socios, pagos, CRM",
+  "licenseUrl" => "https://clubpolanco.com",
+  "livePreview" => "https://clubpolanco.com",
+  "productPage" => "https://clubpolanco.com",
+  "support" => "https://clubpolanco.com",
+  "adminTemplates" => "https://clubpolanco.com",
+  "bootstrapDashboard" => "https://clubpolanco.com",
+  "ogTitle" => "Club Polanco — Sistema Administrativo",
+  "ogImage" => "",
+  "ogType" => "product",
+  "documentation" => "https://clubpolanco.com",
+  "repository" => "https://clubpolanco.com",
+  "gitRepo" => "",
+  "gitRepoAccess" => "",
+  "githubFreeUrl" => "",
+  "facebookUrl" => "",
+  "twitterUrl" => "",
+  "githubUrl" => "",
+  "dribbbleUrl" => "",
+  "instagramUrl" => ""
+];

@@ -1,0 +1,114 @@
+{
+  "menu": [
+    {
+      "menuHeader": "Principal"
+    },
+    {
+      "url": "dashboard",
+      "name": "Dashboard",
+      "icon": "menu-icon icon-base bx bx-home-smile",
+      "slug": "dashboard-analytics"
+    },
+    {
+      "menuHeader": "CRM"
+    },
+    {
+      "name": "WhatsApp & Mensajes",
+      "icon": "menu-icon icon-base bx bxl-whatsapp",
+      "slug": "crm-whatsapp",
+      "submenu": [
+        {
+          "url": "crm/mensajes",
+          "name": "Bandeja de mensajes",
+          "slug": "crm-mensajes"
+        },
+        {
+          "url": "crm/automatizacion",
+          "name": "Automatización",
+          "slug": "crm-automatizacion"
+        },
+        {
+          "url": "crm/recordatorios",
+          "name": "Recordatorios & Cumpleaños",
+          "slug": "crm-recordatorios"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Socios"
+    },
+    {
+      "url": "clientes",
+      "name": "Cartera de Socios",
+      "icon": "menu-icon icon-base bx bx-group",
+      "slug": "clientes"
+    },
+    {
+      "menuHeader": "Pagos"
+    },
+    {
+      "name": "Gestión de Pagos",
+      "icon": "menu-icon icon-base bx bx-credit-card",
+      "slug": "pagos",
+      "submenu": [
+        {
+          "url": "pagos",
+          "name": "Historial de Pagos",
+          "slug": "pagos-index"
+        },
+        {
+          "url": "pagos/qr",
+          "name": "QR Dinámico",
+          "slug": "pagos-qr"
+        },
+        {
+          "url": "pagos/tarjeta",
+          "name": "Pago con Tarjeta",
+          "slug": "pagos-tarjeta"
+        },
+        {
+          "url": "pagos/verificacion",
+          "name": "Verificación",
+          "slug": "pagos-verificacion"
+        },
+        {
+          "url": "pagos/recibos",
+          "name": "Recibos & Facturas",
+          "slug": "pagos-recibos"
+        },
+        {
+          "url": "pagos/cobranza-automatica",
+          "name": "Cobranza Automática",
+          "slug": "pagos-cobranza-automatica"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Sistema"
+    },
+    {
+      "name": "Usuarios",
+      "icon": "menu-icon icon-base bx bx-user-circle",
+      "slug": "usuarios",
+      "submenu": [
+        {
+          "url": "usuarios",
+          "name": "Listado de Usuarios",
+          "slug": "usuarios-listado"
+        },
+        {
+          "url": "usuarios/perfil",
+          "name": "Mi Perfil",
+          "slug": "usuarios-perfil"
+        }
+      ]
+    },
+    {
+      "url": "portal",
+      "name": "Portal de Socios",
+      "icon": "menu-icon icon-base bx bx-id-card",
+      "slug": "portal-externo",
+      "target": "_blank"
+    }
+  ]
+}
