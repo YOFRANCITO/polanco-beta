@@ -19,9 +19,10 @@ class Analytics extends Controller
         $pagosRecientes = Pago::with('socio')->latest()->limit(5)->get();
 
         $cumpleaneros = Socio::whereMonth('fecha_nacimiento', now()->month)
-            ->orderByRaw('DAY(fecha_nacimiento) ASC')
-            ->limit(5)
-            ->get();
+            ->get()
+            ->sortBy(fn ($s) => $s->fecha_nacimiento ? $s->fecha_nacimiento->day : 0)
+            ->take(5)
+            ->values();
 
         // Categorías
         $catVip = Socio::where('categoria', 'vip')->count();

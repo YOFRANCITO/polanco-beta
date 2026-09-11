@@ -190,8 +190,9 @@ class CrmController extends Controller
 
         // Cumpleañeros de este mes
         $cumpleanerosMes = Socio::whereMonth('fecha_nacimiento', $today->month)
-            ->orderByRaw('DAY(fecha_nacimiento) ASC')
-            ->get();
+            ->get()
+            ->sortBy(fn ($s) => $s->fecha_nacimiento ? $s->fecha_nacimiento->day : 0)
+            ->values();
 
         return view('content.crm.recordatorios', compact('sociosPorCobrar', 'cumpleanerosMes'));
     }
